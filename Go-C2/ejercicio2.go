@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main2() {
+func main() {
 
 	var precio float64 = 540
 	var descuento float64 = 20

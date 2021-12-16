@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main3() {
+func main() {
 
 	edad := 23
 	tieneempleo := true

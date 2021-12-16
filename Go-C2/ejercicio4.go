@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main4() {
+func main() {
 
 	mes := 5
 
