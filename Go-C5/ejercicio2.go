@@ -30,9 +30,8 @@ func main() {
 
 		}
 
-		for value := range productos {
-			fmt.Println("s\n", productos[value])
-		}
+		fmt.Println(productos[0], "\t", productos[1], "\t", productos[2])
+
 	}
 
 }
