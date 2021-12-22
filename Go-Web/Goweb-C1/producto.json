@@ -1,3 +1,35 @@
 {
-    "array": ["producto1", "producto2", "producto3", "producto4", "producto5", "producto6"]
+    "productos": [
+    {
+        "id" : 1,
+        "nombre": "producto 1",
+        "color": "blanco",
+        "precio": 1500,
+        "stock": 5,
+        "codigo": "123dd3",
+        "publicado": true,
+        "fecha": "12-05-1991"
+    },
+    {
+        "id" : 2,
+        "nombre": "producto 2",
+        "color": "negro",
+        "precio": 3000,
+        "stock": 3,
+        "codigo": "53lle3",
+        "publicado": false,
+        "fecha": "15-05-2002"
+    },
+    {
+        "id" : 3,
+        "nombre": "producto 3",
+        "color": "azul",
+        "precio": 1200,
+        "stock": 1,
+        "codigo": "12e1a5",
+        "publicado": true,
+        "fecha": "07-08-2015"
+    }
+    
+    ]
 }
