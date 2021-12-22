@@ -39,3 +39,11 @@ func nuevoProducto(nombre string, precio int) *Producto {
 	return p
 
 }
+func (u *Usuario) AgregaProducto(nombreUsuario User, nombreProducto Producto, cantidadProducto int) {
+	nombreProducto.cantidad = cantidadProducto
+	nombreUsuario.productos = append(nombreUsuario.productos, nombreProducto)
+}
+func (u *Usuario) BorrarProducto(nombreUsuario User, nombreProducto Producto) {
+	nombreUsuario.productos = nil
+	fmt.Printf("Se borrraron los productos del usuario %s", nombreUsuario.nombre)
+}
