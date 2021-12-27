@@ -2,51 +2,87 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
-type Matrix struct {
-	valores []float64
-	alto    int
-	ancho   int
+type tiendaModa struct {
+	nombre string
+	precio float64
+	tienda string
+	url    string
+}
+type tiendacolumbia struct {
+	tienda string
+	precio float64
+}
+type Ecommerce interface {
+	Precio(size string) float64
+	Envio(direccion string) string
 }
 
-func (m Matrix) Set() {
-	if len(m.valores) != m.ancho*m.alto {
-		fmt.Println("La cantidad de valores no coincide con las dimensiones especificadas")
+func (t tiendaModa) Precio(tamaño string) float64 {
+	switch tamaño {
+	case "pequeño":
+		return t.precio
+	case "mediano":
+		var porcentaje float64
+		porcentaje = (t.precio / 100) * 3
+		return t.precio + porcentaje
+	case "grande":
+		var porcentaje float64
+		flete := 2500
+		porcentaje = (t.precio / 100) * 6
+		return t.precio + porcentaje + float64(flete)
 	}
+	return t.precio
+}
 
+func (t tiendaModa) Envio(dir string) string {
+	enviado := "Enviando un paquete a " + dir
+	return enviado
 }
-func (m Matrix) Cuadratica() bool {
-	if (m.alto == m.ancho) && m.alto != 0 {
-		return true
+func (t tiendacolumbia) Precio(tamaño string) float64 {
+	switch tamaño {
+	case "pequeño":
+		return t.precio
+	case "mediano":
+		var porcentaje float64
+		porcentaje = (t.precio / 100) * 3
+		return t.precio + porcentaje
+	case "grande":
+		var porcentaje float64
+		flete := 2500
+		porcentaje = (t.precio / 100) * 6
+		return t.precio + porcentaje + float64(flete)
 	}
-	return false
+	return t.precio
 }
-func (m Matrix) Max() float64 {
-	max := -math.MaxFloat64
-	for _, elemento := range m.valores {
-		if elemento > max {
-			max = elemento
-		}
-	}
-	return max
+func (t tiendacolumbia) Envio(dir string) string {
+	enviado := "Enviando un paquete a " + dir
+	return enviado
 }
-func (m Matrix) Print() {
-	if len(m.valores) == 0 {
-		fmt.Println("La matriz está vacía")
+func nuevaTienda(mailType string) Ecommerce {
+	if mailType == "tiendamoda" {
+		return tiendaModa{nombre: "mesa", precio: 2000, tienda: "sucursal Colombia", url: "http//:tiendaModa.com"}
 	}
-	for fila := 0; fila < m.alto; fila++ {
-		fmt.Println(m.valores[fila*m.ancho : fila*m.ancho+m.ancho])
+	if mailType == "tiendacolumbia" {
+		return tiendaModa{tienda: "sucursal Mexico", precio: 5000}
 	}
+	return nil
 }
 func main() {
-	m := Matrix{
-		valores: []float64{1, 2, 3, 4, 54, 65, 76, 87, 87},
-		alto:    3,
-		ancho:   3,
-	}
-	Matrix.Set(m)
-	Matrix.Print(m)
-	Matrix.Cuadratica(m)
+	fmt.Println("------------------------------------------------")
+	tiendaModa := nuevaTienda("tiendamoda")
+	precioModa := tiendaModa.Precio("grande")
+	envioModa := tiendaModa.Envio("Avenida Independencia 578")
+	fmt.Println(tiendaModa)
+	fmt.Println(envioModa)
+	fmt.Println("Precio del producto:", precioModa)
+	fmt.Println("------------------------------------------------")
+	tiendaColumbia := nuevaTienda("tiendacolumbia")
+	precioColumbia := tiendaColumbia.Precio("Mediano")
+	envioColumbia := tiendaColumbia.Envio("Avenida Independencia 578")
+	fmt.Println(tiendaColumbia)
+	fmt.Println(envioColumbia)
+	fmt.Println("Precio del pruducto:", precioColumbia)
+	fmt.Println("------------------------------------------------")
 }
